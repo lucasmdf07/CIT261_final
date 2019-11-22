@@ -2,10 +2,10 @@ body{
     background:rgb(90, 60, 60);
 }
 
-#search{
+#searchSubmit{
 
     color: #fff;
-    background-color: #007bff;
+    background-color: orange;
     border-color: #007bff;
     outline: none;
     min-height: 38px;
