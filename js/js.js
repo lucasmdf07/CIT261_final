@@ -5,7 +5,8 @@ const url = 'https://api.themoviedb.org/3/search/movie?api_key=243617934df15cd41
 const searchButton = document.querySelector('#searchSubmit');
 const searchInput = document.querySelector('#inputSearchBox');
 const movieSearchable = document.querySelector('#movies-searchable');
-const IMAGE_URL = 'https://image.tmdb.org/t/p/w500'
+const IMAGE_URL = 'https://image.tmdb.org/t/p/w500';
+// const imgElement = document.querySelector('img');
 
 {
     /* <div class="movie">heroku
@@ -31,9 +32,10 @@ function movieSelection(movies) {
     return movies.map((movie) => {
         // if statement to make sure we do not display paths without images
         if (movie.poster_path) {
-            return `
-                <img src=${IMAGE_URL + movie.poster_path} data-movie-id=${movie.id}/> 
-                `;
+            return `<img 
+                src=${IMAGE_URL + movie.poster_path} 
+                data-movie-id=${movie.id}
+            />`;
         }
     })
 }
@@ -55,6 +57,16 @@ function createMovieContainer(movies) {
     return movieElement;
 }
 
+function renderSearchMovies(data) {
+    // data.results []
+    movieSearchable.innerHTML = '';
+    const movies = data.results;
+    const movieBlock = createMovieContainer(movies);
+    movieSearchable.appendChild(movieBlock);
+    console.log('Data: ', data);
+
+}
+
 searchButton.onclick = function (event) {
     event.preventDefault();
     const value = searchInput.value;
@@ -62,15 +74,7 @@ searchButton.onclick = function (event) {
 
     fetch(newUrl)
         .then((res) => res.json())
-        .then((data) => {
-
-            // data.results []
-            movieSearchable.innerHTML = '';
-            const movies = data.results;
-            const movieBlock = createMovieContainer(movies);
-            movieSearchable.appendChild(movieBlock);
-            console.log('Data: ', data);
-        })
+        .then(renderSearchMovies)
         .catch((error) => {
             console.log('Error: ', error);
         });
@@ -79,5 +83,20 @@ searchButton.onclick = function (event) {
     searchInput.value = '';
 
     console.log('value: ', value);
+
+}
+
+// Event Delegation
+document.onclick = function (event) {
+
+    const target = event.target;
+
+    if (target.tagName.toLowerCase() === 'img') {
+        console.log('Hello World');
+        const section = event.target.parentElement;
+        const content = section.nextElementSibling;
+        content.classList.add('content-display');
+    }
+
 
 }

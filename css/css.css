@@ -58,7 +58,7 @@ body {
 }
 
 section {
-    /* display: flex; */
+    display: flex;
 
 }
 
@@ -72,4 +72,14 @@ img:hover {
     margin-left: 0 40px;
     transform: scale(1.2);
     cursor: pointer;
+}
+
+.content {
+    border: 3px solid blue;
+    height: 300px;
+    display: none;
+}
+
+.content-display {
+    display: block;
 }
