@@ -12,6 +12,10 @@ body {
     align-items: center;
 }
 
+#movies-searchable {
+    margin-top: 20px;
+}
+
 #movies-container {
     align-content: center;
 }
@@ -51,4 +55,21 @@ body {
 
 .nav-full {
     margin-top: 10%;
+}
+
+section {
+    /* display: flex; */
+
+}
+
+
+section img {
+    width: 300px;
+    transition: 250ms all;
+}
+
+img:hover {
+    margin-left: 0 40px;
+    transform: scale(1.2);
+    cursor: pointer;
 }
