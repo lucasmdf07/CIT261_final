@@ -6,26 +6,11 @@ const searchButton = document.querySelector('#searchSubmit');
 const searchInput = document.querySelector('#inputSearchBox');
 const movieSearchable = document.querySelector('#movies-searchable');
 const IMAGE_URL = 'https://image.tmdb.org/t/p/w500';
-// const imgElement = document.querySelector('img');
+const imgElement = document.querySelector('img');
 
-{
-    /* <div class="movie">heroku
-        <section class="section">
-            <img
-                src=""
-                alt=""
-                data-movie-id="557"
-            />
-            <img
-                src=""
-                alt=""
-                data-movie-id="557"
-            />
-        </section>
-        <div class="content">
-            <p id="content-close">X</p>
-        </div>
-    </div> */
+function generateUrl(path) {
+    const url = `https://api.themoviedb.org/3${path}?api_key=243617934df15cd416cb4fab0608b4ff`;
+    return url;
 }
 
 function movieSelection(movies) {
@@ -49,7 +34,7 @@ function createMovieContainer(movies) {
             ${movieSelection(movies)}
         </section>
         <div class = "content">
-        <p id = "content-close"></p>
+        <p id = "content-close">X</p>
         </div>  
     `;
 
@@ -70,7 +55,8 @@ function renderSearchMovies(data) {
 searchButton.onclick = function (event) {
     event.preventDefault();
     const value = searchInput.value;
-    const newUrl = url + '&query=' + value;
+    const path = '/search/movie';
+    const newUrl = generateUrl(path) + '&query=' + value;
 
     fetch(newUrl)
         .then((res) => res.json())
@@ -86,17 +72,65 @@ searchButton.onclick = function (event) {
 
 }
 
+// function createReviews() {
+
+// }
+
+function createIframe(video) {
+    const iframe = document.createElement('iframe');
+    iframe.src = `https://www.youtube.com/embed/${video.key}`;
+    iframe.width = 360;
+    iframe.height = 315;
+    iframe.allowFullscreen = true;
+
+    return iframe;
+}
+
+function createVideoTemplate(data, content) {
+    content.innerHTML = '<p id="content-close">X</p>';
+     console.log('Videos: ', data);
+     const videos = data.results;
+     const length = videos.length > 4 ? 4 : videos.length;
+     const iframeContainer = document.createElement('div');
+
+     for (let i = 0; i < length; i++) {
+         const video = videos[i];
+         const iframe = createIframe(video);
+         iframeContainer.appendChild(iframe);
+         content.appendChild(iframeContainer);
+     }
+}
+
+
 // Event Delegation
 document.onclick = function (event) {
 
     const target = event.target;
 
     if (target.tagName.toLowerCase() === 'img') {
-        console.log('Hello World');
+        // console.log('Hello World');
+        const movieId = target.dataset.movieId;
+        console.log('MovieId: ', movieId); 
         const section = event.target.parentElement;
         const content = section.nextElementSibling;
         content.classList.add('content-display');
+
+        const path = `/movie/${movieId}/videos`;
+        const url = generateUrl(path);
+
+        //fetch movie videos
+        fetch(url)
+            .then((res) => res.json())
+            .then((data) => createVideoTemplate(data, content))
+            .catch((error) => {
+                console.log('Error: ', error);
+            });
+
     }
 
+    if (target.id === 'content-close') {
+        const content = target.parentElement;
+        content.classList.remove('content-display');
 
+    }
 }

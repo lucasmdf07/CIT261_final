@@ -59,8 +59,11 @@ body {
 
 section {
     display: flex;
+    width: 100%;
+    overflow-x: auto;
 
 }
+
 
 
 section img {
@@ -76,8 +79,15 @@ img:hover {
 
 .content {
     border: 3px solid blue;
-    height: 300px;
     display: none;
+}
+
+.content div {
+    display: flex;
+    justify-content:space-around;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 10 px;
 }
 
 .content-display {
