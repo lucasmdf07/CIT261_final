@@ -90,7 +90,7 @@ function createVideoTemplate(data, content) {
     content.innerHTML = '<p id="content-close">X</p>';
      console.log('Videos: ', data);
      const videos = data.results;
-     const length = videos.length > 4 ? 4 : videos.length;
+     const length = videos.length > 3 ? 3 : videos.length;
      const iframeContainer = document.createElement('div');
 
      for (let i = 0; i < length; i++) {
