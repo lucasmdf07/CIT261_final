@@ -184,7 +184,7 @@ textarea{
   border:none; 
   border-radius:5px; 
   box-shadow:0px 0px 5px #666666 inset;
-  width:99.5%;
+  /* width:99.5%; */
   height: 150px; 
   text-indent:5px; 
     resize:none;
@@ -200,7 +200,10 @@ textarea{
   background-color: rgba(255, 90, 90, 0.4);
   margin-bottom: 15px;
   margin-top: 15px;
+  padding-bottom: 15px;
   padding-top: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
@@ -279,11 +282,11 @@ float: right;
 }
 
 body{
-    width: 95%;
+    width: 98%;
 }
 
     textarea {
-        width: 99%;
+        width: 100%;
     }
 
 
@@ -334,6 +337,9 @@ body{
         position: inherit;
         padding-left: 10px;
     }
+    body{
+        width:96%;
+    }
 }
 
 
@@ -342,6 +348,10 @@ body{
     section img {
         width: 200px;
         transition: 250ms all;
+    }
+
+    body {
+        width: 96%;
     }
 
     section {
@@ -403,8 +413,8 @@ body{
         padding-left: 10px;
     }
 
-    textarea {
-        width: 98%;
+    body {
+        width: 94%;
     }
 
 

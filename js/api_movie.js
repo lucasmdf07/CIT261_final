@@ -74,12 +74,12 @@ function createMovieContainer(movies) {
 
     const movieTemplate = `
         <section class = "section" id = "movies">
-            ${movieSelection(movies)}
+        ${movieSelection(movies)}
         </section>
         <div class = "content">
         <p id = "content-close">&times; close</p>
         </div>  
-    `;
+        `;
 
     movieElement.innerHTML = movieTemplate;
     return movieElement;
