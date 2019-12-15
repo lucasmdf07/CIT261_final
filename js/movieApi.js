@@ -23,10 +23,8 @@ function movieSelection(movies) {
     if (movie.poster_path) {
       // getting the id of the API movie and the image
       // and passing them to a different html page
-      return ` <a href="/CIT261_final/review.html?id=${
-        movie.id
-      }&img=${IMAGE_URL + movie.poster_path}"> <img 
-                src=${IMAGE_URL + movie.poster_path} 
+      return ` <a href="./review.html?id=${movie.id}&img=${IMAGE_URL + movie.poster_path}"> 
+      <img src=${IMAGE_URL + movie.poster_path} 
                 data-movie-id=${movie.id}
             /> </a>`;
     }
